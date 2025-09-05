@@ -1,0 +1,26 @@
+{
+  "workbench.colorTheme": "Default Dark+",
+  "editor.fontFamily": "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "terminal.integrated.fontFamily": "JetBrains Mono",
+  "editor.formatOnSave": true,
+  "files.trimFinalNewlines": true,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "editor.rulers": [100, 120],
+  "workbench.statusBar.visible": true,
+  "workbench.activityBar.visible": true,
+  "window.menuBarVisibility": "compact",
+  "workbench.layoutControl.enabled": true,
+  // If supported by your VS Code version, move activity bar to top
+  "workbench.activityBar.location": "top",
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.untrackedChanges": "separate",
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "makefile.configureOnOpen": true,
+  "ansible.validation.lint.enabled": true,
+  "ansible.executionEnvironment.enabled": false
+}
+

@@ -1,0 +1,111 @@
+[user]
+	# Name/email are set by bootstrap-prebrew or your local overrides
+
+[core]
+	autocrlf = input
+	excludesfile = ~/.gitignore_global
+	editor = code --wait
+	untrackedCache = true
+
+[init]
+	defaultBranch = main
+
+[color]
+	ui = auto
+
+[fetch]
+	prune = true
+	parallel = 16
+
+[pull]
+	ff = only
+
+[merge]
+	conflictstyle = zdiff3
+	ff = only
+
+[rebase]
+	autoStash = true
+
+[push]
+	default = simple
+	autoSetupRemote = true
+
+[advice]
+	addIgnoredFile = false
+
+[rerere]
+	enabled = true
+
+[pack]
+	writeBitmaps = true
+	useSparse = true
+
+[index]
+	version = 4
+
+[gc]
+	auto = 0
+	writeCommitGraph = true
+
+[feature]
+	manyFiles = true
+
+[commitGraph]
+	generationVersion = 2
+
+[core]
+	fsmonitor = true
+
+[gpg]
+	format = ssh
+
+[pager]
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	line-numbers = true
+
+[credential]
+	helper = osxkeychain
+
+[includeIf "gitdir:~/repos/work/"]
+	path = ~/.gitconfig.work
+
+[includeIf "gitdir:~/repos/personal/"]
+	path = ~/.gitconfig.personal
+
+[diff]
+	algorithm = histogram
+	renames = true
+
+[merge]
+	renames = true
+
+[status]
+	aheadBehind = true
+
+[core]
+	preloadIndex = true
+
+[index]
+	threads = 0
+
+
+[alias]
+	# Show divergence vs detected default branch (origin/<default>)
+	diverge = !f(){ rem=${1:-origin}; base=$(git symbolic-ref --quiet --short refs/remotes/$rem/HEAD 2>/dev/null | sed 's#^.*/##'); [ -z "$base" ] && { base=main; git show-ref --quiet refs/heads/main || base=master; }; up="$rem/$base"; git fetch "$rem" -q; set -- $(git rev-list --left-right --count "$up"...HEAD); echo "Ahead: $2  Behind: $1  Upstream: $up"; }; f
+	# Prepare branch for merge: verify clean, show divergence, open interactive rebase onto default branch
+	prep-merge = !f(){ set -e; rem=${1:-origin}; cur=$(git symbolic-ref --quiet --short HEAD || echo HEAD); base=$(git symbolic-ref --quiet --short refs/remotes/$rem/HEAD 2>/dev/null | sed 's#^.*/##'); [ -z "$base" ] && { base=main; git show-ref --quiet refs/heads/main || base=master; }; if [ "$cur" = "$base" ]; then echo "You are on $base; create/topic branch first." >&2; exit 1; fi; up="$rem/$base"; git fetch "$rem"; git diff --quiet || { echo "Working tree has changes; commit or stash." >&2; exit 1; }; git diff --cached --quiet || { echo "Index has changes; commit or stash." >&2; exit 1; }; set -- $(git rev-list --left-right --count "$up"...HEAD); echo "Ahead: $2  Behind: $1  Upstream: $up"; echo "Launching interactive rebase onto $up..."; git rebase -i "$up"; }; f
+
+	# One-shot squash: reset to upstream, keep changes staged, then commit once
+	prep-merge-squash = !f(){ set -e; rem=${1:-origin}; cur=$(git symbolic-ref --quiet --short HEAD || echo HEAD); base=$(git symbolic-ref --quiet --short refs/remotes/$rem/HEAD 2>/dev/null | sed 's#^.*/##'); [ -z "$base" ] && { base=main; git show-ref --quiet refs/heads/main || base=master; }; if [ "$cur" = "$base" ]; then echo "You are on $base; create/topic branch first." >&2; exit 1; fi; up="$rem/$base"; git fetch "$rem"; git diff --quiet || { echo "Working tree has changes; commit or stash." >&2; exit 1; }; git diff --cached --quiet || { echo "Index has changes; commit or stash." >&2; exit 1; }; set -- $(git rev-list --left-right --count "$up"...HEAD); echo "Ahead: $2  Behind: $1  Upstream: $up"; echo "Squashing all commits on $cur onto $up..."; git reset --soft "$up"; git commit; }; f
+	# Fast-forward sync current branch with default branch (fetch, rebase)
+	sync-default = !f(){ rem=${1:-origin}; base=$(git symbolic-ref --quiet --short refs/remotes/$rem/HEAD 2>/dev/null | sed 's#^.*/##'); [ -z "$base" ] && { base=main; git show-ref --quiet refs/heads/main || base=master; }; git fetch "$rem"; git rebase "$rem/$base"; }; f

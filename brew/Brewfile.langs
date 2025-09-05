@@ -1,0 +1,12 @@
+# HashiCorp & CLIs
+tap "hashicorp/tap"
+brew "hashicorp/tap/terraform"
+brew "consul"
+brew "go"
+brew "python@3.12"
+
+# Oracle JDKs — availability may vary in Homebrew casks.
+cask "oracle-jdk"         # Latest LTS (e.g., 21)
+# cask "oracle-jdk@17"    # Uncomment if available in your tap
+# cask "oracle-jdk@11"    # Uncomment if available
+# Older Oracle JDKs (e.g., 8) are typically not distributed via Homebrew.

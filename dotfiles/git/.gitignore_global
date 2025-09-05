@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editors/IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node/JS
+node_modules/
+dist/
+build/
+coverage/
+*.log
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+
+# Java/Gradle
+.gradle/
+build/
+out/
+
+# Env
+.env
+.env.*
+

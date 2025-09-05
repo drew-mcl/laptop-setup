@@ -1,0 +1,6 @@
+git_protocol: ssh
+display_comment_quote: false
+editor: "code --wait"
+host: gitlab.com
+check_update: false
+

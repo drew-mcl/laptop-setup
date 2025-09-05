@@ -1,0 +1,19 @@
+# VS Code extensions to install
+ms-vscode.makefile-tools
+redhat.ansible
+hashicorp.terraform
+ms-python.python
+golang.go
+eamodio.gitlens
+EditorConfig.EditorConfig
+ms-azuretools.vscode-docker
+esbenp.prettier-vscode
+ms-vscode.vscode-typescript-next
+mhutchie.git-graph
+github.vscode-pull-request-github
+Gruntfuggly.todo-tree
+yzhang.markdown-all-in-one
+streetsidesoftware.code-spell-checker
+ms-kubernetes-tools.vscode-kubernetes-tools
+vscjava.vscode-gradle
+

@@ -1,0 +1,7 @@
+cask "ghostty"
+cask "obsidian"
+cask "intellij-idea"
+cask "visual-studio-code"
+cask "drawio"
+cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"

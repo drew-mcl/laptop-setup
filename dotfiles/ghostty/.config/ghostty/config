@@ -1,0 +1,18 @@
+# Ghostty configuration
+
+# Font
+font-family = "JetBrains Mono"
+font-size = 13
+
+# Shell
+shell = "/bin/zsh"
+
+# Behavior
+confirm-close = false
+copy-on-select = true
+cursor-style = bar
+
+# Window
+window-padding-x = 8
+window-padding-y = 8
+

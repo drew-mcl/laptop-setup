@@ -1,0 +1,11 @@
+[user]
+	name = Your Name
+	email = you@example.com
+
+# Example: enforce signing
+#[commit]
+#	gpgsign = true
+#
+#[user]
+#	signingkey = ABCDEF1234567890
+
